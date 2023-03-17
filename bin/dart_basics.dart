@@ -1,21 +1,33 @@
 void main(List<String> arguments) {
-  // Sets
-  Set<int> set = {1, 2, 3, 4};
-  var set1 = <int>{1, 2, 3, 4};
-  var set2 = {1, 2, 3, 3}; // =>  {1, 2, 3}; Set ignore duplicates
+  Map<String, int> fruitsAndCalories = {"apple": 200, "strawberry": 50};
+  fruitsAndCalories["apple"] = 300; // => {"apple": 300, "strawberry": 50};
+  fruitsAndCalories["pineapple"] =
+      600; // => {apple: 300, strawberry: 50, pineapple: 600}
 
-  Set<int> set3 = Set.from([1, 2, 3, 3, 3, 4, 4, 5]);
-  // print(set3); => {1, 2, 3, 4, 5}
+  Map<String, int> fruitsAndCalories1 = {"apple": 200, "strawberry": 50};
+  Map<String, int> fruitsAndCalories2 = {"pear": 200, "peach": 50};
+  Map<String, int> fruitsAndCalories3 = {
+    ...fruitsAndCalories1,
+    ...fruitsAndCalories2
+  }; // => {apple: 200, strawberry: 50, pear: 200, peach: 50}
 
-  set3.contains(1); // => true
-  set3.add(7);
-  set3.remove(7);
-  set3.addAll([100, 45, 87]);
+  Map<String, int> fruitsAndCalories4 = {
+    "apple": 200,
+    "strawberry": 50,
+    "apple": 250
+  }; // => {apple: 250, strawberry: 50}
 
-  Set<int> set4 = {...set3}; // copy
-  Set<int> set5 = set3.toSet(); // copy
+  // Looping over the map elements
+  for (var key in fruitsAndCalories4.keys) {
+    print(key); // => key
+    print(fruitsAndCalories4[key]); // => value
+  }
 
-  // if and for same as in list 
+  for (var value in fruitsAndCalories4.values) {
+    print(value);
+  }
 
-  
+  for (var entry in fruitsAndCalories4.entries) {
+    print("${entry.key} ${entry.value}");
+  }
 }
