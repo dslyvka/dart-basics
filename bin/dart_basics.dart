@@ -1,38 +1,21 @@
-void main(List<String> arguments) {}
+void main(List<String> arguments) {
+  Car car = Car(1, "BMW");
+  Car car1 = Car("2", "Mercedes");
 
-// Interfaces
-
-// class IVehicle {
-//   String name;
-//   String engine;
-
-//   IVehicle(this.name, this.engine);
-
-//   void getEgine() {
-//     print("In $name is $engine engine");
-//   }
-// }
-
-abstract class IVehicle {
-  String name;
-  String engine;
-
-  IVehicle(this.name, this.engine);
-
-  void getEgine();
+  printAge(20);
 }
 
-class BMW implements IVehicle {
-  @override
+class Car<T> {
+  T id;
   String name;
 
-  @override
-  String engine;
+  Car(this.id, this.name);
 
-  BMW(this.name, this.engine);
-
-  @override
-  void getEgine() {
-    print("In $name is $engine engine");
+  void info() {
+    print("ID is $id and name is $name");
   }
+}
+
+void printAge<T>(T age) {
+  print("Age is $age");
 }
