@@ -1,47 +1,38 @@
-void main(List<String> arguments) {
-  Car car = Car("BMW", "White");
-  car.start();
-  car.getEngine();
+void main(List<String> arguments) {}
 
-  Motorcycle moto = Motorcycle("Yamaha", "Red");
-  moto.start();
-  moto.getColor();
-}
+// Interfaces
 
-// inheritance
-class Vehicle {
-  late String name;
+// class IVehicle {
+//   String name;
+//   String engine;
 
-  Vehicle(this.name);
+//   IVehicle(this.name, this.engine);
 
-  void start() {
-    print("$name was started");
-  }
-}
+//   void getEgine() {
+//     print("In $name is $engine engine");
+//   }
+// }
 
-class Car extends Vehicle {
+abstract class IVehicle {
+  String name;
   String engine;
 
-  Car(String name, this.engine) : super(name);
+  IVehicle(this.name, this.engine);
 
-  void getEngine() {
-    print("The $name's engine is $engine");
-  }
+  void getEgine();
 }
 
-// Polymorphism
-class Motorcycle extends Vehicle {
-  String color;
-
-  Motorcycle(String name, this.color) : super(name);
-
-  void getColor() {
-    print("The $name's color is $color");
-  }
+class BMW implements IVehicle {
+  @override
+  String name;
 
   @override
-  void start() {
-    print("I am ${super.name}");
-    super.start();
+  String engine;
+
+  BMW(this.name, this.engine);
+
+  @override
+  void getEgine() {
+    print("In $name is $engine engine");
   }
 }
