@@ -1,96 +1,108 @@
 void main(List<String> arguments) {
-  // function reference
-  void Function() sayHelloReference = sayHello;
-  Function sayHelloReference1 = sayHello;
-  var sayHelloReference2 = sayHello;
+  Car myCar = Car();
+  // myCar.info(); => error
 
-  // Callbacks
-  // void useCallback(void Function() callback) {
-  //   callback();
-  // }
+  myCar.name = "BMW";
+  myCar.color = "black";
+  myCar.info();
+  // myCar.engine = "Some engine"; => error;
 
-  //   void useCallback(Function() callback) {
-  //   callback();
-  // }
+  Car1 myCar1 = Car1("Mercedes", "black");
+  myCar1.info();
 
-  void useCallback(Function callback) {
-    callback();
+  BMWx6.info();
+}
+
+// Class without constructor
+class Car {
+  late String name;
+  late String color;
+
+  void info() {
+    print("name: $name color: $color");
+  }
+}
+
+// Class with constructor
+class Car1 {
+  late String name;
+  late String color;
+
+  Car1(String name, String color) {
+    this.name = name;
+    this.color = color;
   }
 
-  void printName(String name) {
-    print("My name is $name");
+  void info() {
+    print("name: $name color: $color");
+  }
+}
+
+class Car2 {
+  String name;
+  String color;
+
+  Car2(this.name, this.color);
+
+  void info() {
+    print("name: $name color: $color");
+  }
+}
+
+// named constructor
+class Car3 {
+  late String name;
+  late String color;
+
+  Car3(this.name, this.color);
+  Car3.named(this.name) {
+    this.color = "White";
   }
 
-  void printName1() {
-    print("My name is Ivan");
+  void info() {
+    print("name: $name color: $color");
+  }
+}
+
+// Redirecting constructor
+class Car4 {
+  late String name;
+  late String color;
+
+  Car4(this.name, this.color);
+  Car4.named(String name) : this(name, "white");
+
+  void info() {
+    print("name: $name color: $color");
+  }
+}
+
+// getters and setters
+class Car5 {
+  late String _name;
+  late String _color;
+
+  Car5(this._name, this._color);
+
+  void info() {
+    print("name: $_name color: $_color");
   }
 
-  useCallback(() => printName("Danyil")); // => My name is Danyil
-  useCallback(printName1); // => My name is Ivan
+  set name(String name) {
+    this._name = name;
+  }
+
+  String get name {
+    return _name;
+  }
 }
 
-// How to define a function
-void sayHello() {
-  print("Hello world!");
+// static methods and fields
+class BMWx6 {
+  static const String name = "X6";
+  static const String color = "white";
+
+  static void info() {
+    print("BMW => color: $color name: $name");
+  }
 }
-
-int getAge(int age) => age;
-
-void Function() greeting = () {
-  print("I am greeting function");
-};
-
-Function returnAge = (int age) {
-  return age;
-};
-
-var sayHi = () {
-  print("Hi!");
-};
-
-var returnHello = () => "Hello!";
-
-getPerson(String name) {
-  return name;
-} // dynamic getPerson(String name)
-
-// function with necessary parameter
-void getPerson1(String name, int age) {
-  print("Name: $name Age: $age");
-}
-
-// function with unnecessary undefined parameter
-void getPerson2(String name, [int? age]) {
-  print("Name: $name Age: $age");
-}
-// getPerson2("Danyil") => Name: Danyil Age: null
-
-// function with unnecessary defined parameter
-void getPerson3(String name, [int age = 18]) {
-  print("Name: $name Age: $age");
-}
-// getPerson3("Danyil") => Name: Danyil Age: 18
-
-// function with named nullable parameter
-void getPerson4({String? name, int? age}) {
-  print("Name: $name Age: $age");
-}
-// getPerson4(age: 18); => Name: null Age: 18
-// getPerson4(name: "Danyil", age: 18); => Name: Danyil Age: 18
-// getPerson4(age: 18, name: "Danyil"); => Name: Danyil Age: 18
-
-// function with named required parameter
-void getPerson5({required String name, required int age}) {
-  print("Name: $name Age: $age");
-}
-// getPerson5(name: "Danyil", age: 18); => Name: Danyil Age: 18
-// getPerson5(name: "Danyil"); => error The named parameter 'age' is required, but there's no corresponding argument.
-
-// function with named defined parameter
-void getPerson6({String name = "Danyil", int age = 20}) {
-  print("Name: $name Age: $age");
-}
-// getPerson6(name: "Danyil", age: 18); => Name: Danyil Age: 18
-// getPerson6(name: "Danyil"); => Name: Danyil Age: 20
-
-
